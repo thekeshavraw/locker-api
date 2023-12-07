@@ -4,52 +4,33 @@
  * @author Abhishek Kumar
  */
 
-// import ApiClient from '../../domains/authentication/api-client';
-import { OK, INTERNAL_SERVER_ERROR } from 'http-status';
-import { Router } from 'express';
-import { ErrorHandler } from '../../exception/errors';
-import { ResponseBuilder } from './../../helpers/index'
+import { Router, Request, Response } from 'express';
 import { Validator } from './../../helpers/Validator';
 import { UserController } from './../../controllers/UserController';
 
 module.exports = function (app: any) {
 
      const router = Router();
-     // const client = new ApiClient();
-     const errorHandler = new ErrorHandler();
      const validator = new Validator();
-     const response = new ResponseBuilder();
      const user = new UserController();
 
-     router.post('/user', validator.validate(), async (req, res) => {
+     router.post('/user', validator.validate(), async (req: Request, res: Response) => {
           let response = await user.signup(req, res);
           return response;
-          // if(response) {
-          //      return response;
-          // } else {
-
-          // }
-               // .then((data) => {
-               //      return data;
-               // }).catch((error: Error) => {
-               //      errorHandler.handleError(error, req, res);
-               // });
      });
 
-     // router.post('/user', validator.validate(), user.signup(req, res));
+     router.post('/login', validator.validate(), async (req: Request, res: Response) => {
+          let response = await user.login(req, res);
+          return response;
+     });
+
      router.get('/users', async (req, res) => {
           let response = await user.getAllUsers(req, res);
           return response;
-          // if(response) {
-          //      return response;
-          // } else {
-
-          // }
-               // .then((data) => {
-               //      return data;
-               // }).catch((error: Error) => {
-               //      errorHandler.handleError(error, req, res);
-               // });
+     });
+     router.put('/users', async (req, res) => {
+          let response = await user.getAllUsers(req, res);
+          return response;
      });
 
      app.use('/auth', router);

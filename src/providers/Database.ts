@@ -45,7 +45,10 @@ export class Database {
                host: Locals.config().mysqlHost,
                user: Locals.config().mysqlDbUser,
                password: Locals.config().mysqlDbPass,
-               database: Locals.config().mysqlDbName
+               database: Locals.config().mysqlDbName,
+               port : 3307
+
+               
           });
 
           // this.connection.connect(function (error) {

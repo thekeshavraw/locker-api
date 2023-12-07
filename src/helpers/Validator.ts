@@ -19,7 +19,7 @@ export class Validator {
      public validate(): any {
           try {
                return [
-                    check('username').notEmpty().withMessage('Username is required').trim().escape(),
+                    check('email').notEmpty().withMessage('Email is required').trim().escape(),
                     check('password').not().isEmpty().trim().escape(),
                     check('source').notEmpty().withMessage('Source is required').trim().escape(),
                     (req: Request, res: Response, next: NextFunction) => {

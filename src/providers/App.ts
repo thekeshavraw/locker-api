@@ -9,12 +9,14 @@ import dotenv from 'dotenv';
 import Express from './Express';
 import { Database } from './Database';
 import Log from '../middlewares/Log';
+import { info } from 'console';
 
 class App {
 
 	// Loads your dotenv file
 	public loadConfiguration(): void {
 		Log.info('Configuration :: Booting @ Master...');
+		console.log(info);
 
 		dotenv.config({ path: path.join(__dirname, '../../.env') });
 	}
